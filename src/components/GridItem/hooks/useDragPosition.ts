@@ -5,17 +5,18 @@ export const useDragPosition = () => {
   const dragPosition = ref({ top: 0, left: 0 })
   const isDragging = ref(false)
   const handleResize = (event: any) => {}
+  const type = ref('end')
   const handleDrag = (event: any) => {
     const { dx, dy } = event
     const { x, y } = getControlPosition(event)
     const { left: clientLeft, top: clientTop } = event.target.getBoundingClientRect()
     const { left: parentLeft, top: parentTop } = event.target.offsetParent.getBoundingClientRect()
-
     //计算父容器中子元素的定位
     const newPosition = { top: 0, left: 0 }
 
     switch (event.type) {
       case 'dragstart': {
+        type.value = 'start'
         isDragging.value = true
         // this.previousX = this.innerX;
         // this.previousY = this.innerY;
@@ -27,6 +28,8 @@ export const useDragPosition = () => {
         break
       }
       case 'dragend': {
+        type.value = 'end'
+
         // if (!this.isDragging) return;
         newPosition.left = clientLeft - parentLeft
         newPosition.top = clientTop - parentTop
@@ -35,6 +38,7 @@ export const useDragPosition = () => {
         break
       }
       case 'dragmove': {
+        type.value = 'move'
         dragPosition.value.left += dx
         dragPosition.value.top += dy
         break
@@ -42,5 +46,5 @@ export const useDragPosition = () => {
     }
   }
 
-  return { dragPosition, handleResize, handleDrag }
+  return { dragPosition, handleResize, handleDrag, type }
 }

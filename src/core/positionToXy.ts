@@ -1,17 +1,4 @@
-import { Ref } from 'vue'
-import { GridLayoutOptions } from '@/components/type'
-
-type PositionToXy = (
-  margin: [number, number],
-  colWidth: number,
-  cols: number,
-  rowHeight: number,
-  maxRows: number,
-  top: number,
-  left: number,
-  innerH: number,
-  innerW: number
-) => { x: number; y: number }
+import { PositionToXy } from './types'
 
 export const positionToXy: PositionToXy = (
   margin,

@@ -1,15 +1,5 @@
-import { Ref } from 'vue'
-import { GridLayoutOptions } from '@/components/type'
 
-type XyToPosition = (
-  margin: [number, number],
-  rowHeight: number,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  colWidth: number
-) => { left: number; top: number; width: number; height: number }
+import {XyToPosition} from './types'
 
 export const xyToPosition: XyToPosition = (margin, rowHeight, x, y, w, h, colWidth) => {
   return {

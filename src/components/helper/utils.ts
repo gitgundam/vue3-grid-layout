@@ -99,7 +99,7 @@ export function setStyleTopLeft(position: {
   left: number
   width: number
   height: number
-}): StyleValue {
+}): any {
   const { top, left, width, height } = position
   return {
     top: top + 'px',

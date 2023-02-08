@@ -31,8 +31,6 @@ const props = withDefaults(defineProps<Props>(), {
   rowHeight: 20,
 })
 
-const emits = defineEmits(['update:layout'])
-
 const gridLayout = ref<HTMLElement | null>(null)
 const isDragging = ref(false)
 const [containerHeight] = useHeight(props)
@@ -44,17 +42,20 @@ provide(colWidthKey, colWidth)
 
 defineExpose({
   dragEvent,
+  isDragging
 })
+
 </script>
+
 <template>
   <div :style="containerHeight" class="grid-layout" ref="gridLayout">
-    <slot></slot>
+    <slot :count="1"></slot>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .grid-layout {
   border: 1px solid red;
-  overflow: auto;
+  overflow: hidden;
 }
 </style>

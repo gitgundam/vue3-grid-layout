@@ -9,6 +9,7 @@ export const useDrag = (
   }
 ) => {
   const { proxy } = getCurrentInstance()!
+  
   const dragEvent = (eventType: string, dragPosition: Ref<DragPosition>, id: number) => {
     const layoutItem = props.layout?.find((item) => item.i === id) || { x: 0, y: 0, w: 0, h: 0 }
     const { top, left } = dragPosition.value
