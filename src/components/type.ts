@@ -1,4 +1,4 @@
-export type Layout = LayoutItem[] | []
+export type Layout = LayoutItem[]
 
 export type DragPosition = { top: number; left: number }
 

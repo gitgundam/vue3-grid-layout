@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import elementResizeDetectorMaker from 'element-resize-detector'
 import { useHeight } from '@/components/GridLayout/hooks/useHeight'
-import { provide, ref } from 'vue'
+import { onMounted, provide, ref } from 'vue'
 import { useSize } from '@/components/GridLayout/hooks/useSize'
 import { GridLayoutOptions, Layout } from '../type'
 import { colWidthKey, optionsKey } from '@/components/provideType'
 import { useDrag } from '@/components/GridLayout/hooks/useDrag'
+import { compact } from '@/core/compact'
 
 interface Props extends GridLayoutOptions {
   layout?: Layout
@@ -19,6 +20,7 @@ interface Props extends GridLayoutOptions {
   rowHeight?: number
 }
 
+const emit = defineEmits(['update:layout'])
 const props = withDefaults(defineProps<Props>(), {
   layout: () => [],
   margin: () => [10, 10],
@@ -40,11 +42,14 @@ const { dragEvent } = useDrag(colWidth, props)
 provide(optionsKey, props)
 provide(colWidthKey, colWidth)
 
-defineExpose({
-  dragEvent,
-  isDragging
+onMounted(() => {
+  emit('update:layout', compact(props.layout))
 })
 
+defineExpose({
+  dragEvent,
+  isDragging,
+})
 </script>
 
 <template>

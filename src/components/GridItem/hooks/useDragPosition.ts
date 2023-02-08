@@ -1,5 +1,4 @@
 import { inject, ref } from 'vue'
-import { getControlPosition } from '@/components/helper/draggableUtils'
 
 export const useDragPosition = () => {
   const dragPosition = ref({ top: 0, left: 0 })
@@ -8,7 +7,6 @@ export const useDragPosition = () => {
   const type = ref('end')
   const handleDrag = (event: any) => {
     const { dx, dy } = event
-    const { x, y } = getControlPosition(event)
     const { left: clientLeft, top: clientTop } = event.target.getBoundingClientRect()
     const { left: parentLeft, top: parentTop } = event.target.offsetParent.getBoundingClientRect()
     //计算父容器中子元素的定位
