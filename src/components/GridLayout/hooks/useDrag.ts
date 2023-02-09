@@ -1,6 +1,7 @@
 import { getCurrentInstance, Ref } from 'vue'
 import { positionToXy } from '@/core/positionToXy'
 import { DragPosition, GridLayoutOptions, Layout } from '@/components/type'
+import { compact } from '@/core/compact'
 
 export const useDrag = (
   colWidth: Ref<number>,
@@ -27,14 +28,13 @@ export const useDrag = (
 
     const index = props.layout?.findIndex((item) => item.i === id)
     const cloneArr = JSON.parse(JSON.stringify(props.layout))
-    const obj = { ...layoutItem, x, y }
 
     cloneArr[index] = {
       ...layoutItem,
       x,
       y,
     }
-    proxy?.$emit('update:layout', cloneArr)
+    proxy?.$emit('update:layout', compact(cloneArr))
   }
   return { dragEvent }
 }

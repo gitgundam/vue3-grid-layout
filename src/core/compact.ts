@@ -25,8 +25,11 @@ const sortLayout = (layout: Layout): Layout => {
 
 const compactItem = (target: Layout, layoutItem: LayoutItem): LayoutItem => {
   target.forEach((item) => {
+    if (layoutItem.y > 0 && layoutItem.y - (item.y + item.h) > 0 && layoutItem.x === item.x) {
+      layoutItem.y--
+    }
     if (isOverlap(item, layoutItem)) {
-      layoutItem.x = item.x + item.w
+      // layoutItem.x = item.x + item.w
       layoutItem.y = item.y + item.h
     }
   })

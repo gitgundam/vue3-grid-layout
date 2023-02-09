@@ -68,7 +68,7 @@ onMounted(() => {
 
 <template>
   <div ref="gridItem" class="placeHolder" :style="placeHolder" v-if="type === 'move'"></div>
-  <div ref="gridItem" class="grid-item" :style="style">{{i}}</div>
+  <div ref="gridItem" class="grid-item" :style="style">{{ y }} | {{ h }} {{ y + h }} i:{{i}}</div>
 </template>
 
 <style lang="scss" scoped>
